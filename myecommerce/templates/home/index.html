@@ -1,0 +1,359 @@
+{% extends "base/base.html"%}
+
+{%  block start %}
+
+
+
+    <div class="container">
+
+        {% include "base/alert.html" %}
+
+        <div class="card">
+            <div class="card-body d-flex">
+                <div class="form-inline d-inline-flex mr-auto">
+                    <labe>Category
+                        
+                    <select class="ml-2 form-control">
+                        {% for category in categorys  %}
+                        <option>
+                            {{category.category_name}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    
+                </labe></div>
+                <div class="btn-group" role="group" aria-label="Filter by">
+                  <button type="button" class="btn btn-outline-primary active">Featured</button>
+                  <button type="button" class="btn btn-outline-primary">New Items</button>
+                  <button type="button" class="btn btn-outline-primary">On Sale</button>
+                </div>
+            </div>
+            </div>
+
+
+            <div class=" mt-5 pt-5">
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Product type</h5>
+                                <ul class="list-menu">
+                                    {% for product in products %}
+                                    <li><a href="{% url 'get_product' product.slug %}">{{product.product_name}} <span class="badge badge-pill badge-light float-right">120</span> </a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            {% comment %} <div class="card-body">
+                                <h5 class="card-title">Rating</h5>
+                            
+                                <label class="custom-control custom-checkbox">
+                                  <input type="checkbox" checked="" class="custom-control-input">
+                                  <div class="custom-control-label text-warning"> 
+                                      <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                      <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                  </div>
+                                </label>
+                        
+                                <label class="custom-control custom-checkbox">
+                                  <input type="checkbox" checked="" class="custom-control-input">
+                                  <div class="custom-control-label text-warning"> 
+                                      <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                      <i class="fa fa-star"></i> 
+                                  </div>
+                                </label>
+                        
+                                <label class="custom-control custom-checkbox">
+                                  <input type="checkbox" checked="" class="custom-control-input">
+                                  <div class="custom-control-label text-warning"> 
+                                      <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                  </div>
+                                </label>
+                        
+                                <label class="custom-control custom-checkbox">
+                                  <input type="checkbox" checked="" class="custom-control-input">
+                                  <div class="custom-control-label text-warning"> 
+                                      <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                  
+                                  </div>
+                                </label>
+                        
+                            </div> {% endcomment %}
+                        </div>
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="row">
+
+                   {% for product in products %}
+                <div class="col-md-3">
+                    <figure class="card card-product-grid">
+                        <div class="img-wrap"> <img src="/media/{{product.product_images.first.image}}"> </div>
+                        <figcaption class="info-wrap border-top">
+                            <a href="{% url 'get_product' product.slug %}" class="title">
+                                <b>{{product.product_name}}</b></a>
+                            <div class="price mt-2">${{product.price}}.00</div></br> <!-- price-wrap.// -->
+                            <div class="price mt-2">${{product.discount_price}}.00</div> <!-- price-wrap.// -->
+                        </figcaption>
+                    </figure> <!-- card // -->
+                </div> <!-- col.// -->
+        
+                {% endfor %}
+
+              
+                    </div> <!-- col.// -->  
+                </div>
+
+{% comment %} to shorten words you use truncatewords:18 {% endcomment %}
+
+                <div class=" mt-5 pt-5">
+                    <h1>-Featured Products-</h1>
+                    <div class="row">
+    
+                        <div class="col-md-3">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Product type</h5>
+                                    <ul class="list-menu">
+                                        {% for tom in featured %}
+                                        <li><a href="{% url 'get_product' tom.slug %}">{{tom.product_name}} <span class="badge badge-pill badge-light float-right">120</span> </a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+    
+                            <div class="card mb-3">
+                                {% comment %} <div class="card-body">
+                                    <h5 class="card-title">Rating</h5>
+                                
+                                    <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" checked="" class="custom-control-input">
+                                      <div class="custom-control-label text-warning"> 
+                                          <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                          <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                      </div>
+                                    </label>
+                            
+                                    <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" checked="" class="custom-control-input">
+                                      <div class="custom-control-label text-warning"> 
+                                          <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                          <i class="fa fa-star"></i> 
+                                      </div>
+                                    </label>
+                            
+                                    <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" checked="" class="custom-control-input">
+                                      <div class="custom-control-label text-warning"> 
+                                          <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                      </div>
+                                    </label>
+                            
+                                    <label class="custom-control custom-checkbox">
+                                      <input type="checkbox" checked="" class="custom-control-input">
+                                      <div class="custom-control-label text-warning"> 
+                                          <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                      
+                                      </div>
+                                    </label>
+                            
+                                </div> {% endcomment %}
+                            </div>
+                            </div>
+    
+                            <div class="col-md-9">
+                                <div class="row">
+    
+                       {% for tom in featured%}
+                    <div class="col-md-3">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap"> <img src="/media/{{tom.product_images.first.image}}"> </div>
+                            <figcaption class="info-wrap border-top">
+                                <a href="{% url 'get_product' tom.slug %}" class="title">
+                                    <b>{{tom.product_name}}</b></a>
+                                <div class="price mt-2">${{tom.price}}.00</div></br><!-- price-wrap.// -->
+                                <div class="price mt-2">${{tom.discount_price}}.00</div> <!-- price-wrap.// -->
+                            </figcaption>
+                        </figure> <!-- card // -->
+                    </div> <!-- col.// -->
+            
+                    {% endfor %}
+    
+                  
+                        </div> <!-- col.// -->
+                        
+                
+            </div>
+            <div class=" mt-5 pt-5">
+                <h1>-New Items-</h1>
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Product type</h5>
+                                <ul class="list-menu">
+                                    {% for tom in new_items %}
+                                    <li><a href="{% url 'get_product' tom.slug %}">{{tom.product_name}} <span class="badge badge-pill badge-light float-right">120</span> </a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            {% comment %} <div class="card-body">
+                                <h5 class="card-title">Rating</h5>
+                            
+                                <label class="custom-control custom-checkbox">
+                                  <input type="checkbox" checked="" class="custom-control-input">
+                                  <div class="custom-control-label text-warning"> 
+                                      <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                      <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                  </div>
+                                </label>
+                        
+                                <label class="custom-control custom-checkbox">
+                                  <input type="checkbox" checked="" class="custom-control-input">
+                                  <div class="custom-control-label text-warning"> 
+                                      <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                      <i class="fa fa-star"></i> 
+                                  </div>
+                                </label>
+                        
+                                <label class="custom-control custom-checkbox">
+                                  <input type="checkbox" checked="" class="custom-control-input">
+                                  <div class="custom-control-label text-warning"> 
+                                      <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                  </div>
+                                </label>
+                        
+                                <label class="custom-control custom-checkbox">
+                                  <input type="checkbox" checked="" class="custom-control-input">
+                                  <div class="custom-control-label text-warning"> 
+                                      <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                  
+                                  </div>
+                                </label>
+                        
+                            </div> {% endcomment %}
+                        </div>
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="row">
+
+                   {% for tom in new_items%}
+                <div class="col-md-3">
+                    <figure class="card card-product-grid">
+                        <div class="img-wrap"> <img src="/media/{{tom.product_images.first.image}}"> </div>
+                        <figcaption class="info-wrap border-top">
+                            <a href="{% url 'get_product' tom.slug %}" class="title">
+                                <b>{{tom.product_name}}</b></a>
+                            <div class="price mt-2">${{tom.price}}.00</div></br> <!-- price-wrap.// -->
+                            <div class="price mt-2">${{tom.discount_price}}.00</div> <!-- price-wrap.// -->
+                        </figcaption>
+                    </figure> <!-- card // -->
+                </div> <!-- col.// -->
+        
+                {% endfor %}
+
+              
+                    </div> <!-- col.// -->
+                    
+            
+        </div>
+        <div class=" mt-5 pt-5">
+            <h1>-On Sale-</h1>
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Product type</h5>
+                            <ul class="list-menu">
+                                {% for tom in on_sale %}
+                                <li><a href="{% url 'get_product' tom.slug %}">{{tom.product_name}} <span class="badge badge-pill badge-light float-right">120</span> </a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3">
+                        {% comment %} <div class="card-body">
+                            <h5 class="card-title">Rating</h5>
+                        
+                            <label class="custom-control custom-checkbox">
+                              <input type="checkbox" checked="" class="custom-control-input">
+                              <div class="custom-control-label text-warning"> 
+                                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                  <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                              </div>
+                            </label>
+                    
+                            <label class="custom-control custom-checkbox">
+                              <input type="checkbox" checked="" class="custom-control-input">
+                              <div class="custom-control-label text-warning"> 
+                                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                                  <i class="fa fa-star"></i> 
+                              </div>
+                            </label>
+                    
+                            <label class="custom-control custom-checkbox">
+                              <input type="checkbox" checked="" class="custom-control-input">
+                              <div class="custom-control-label text-warning"> 
+                                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                              </div>
+                            </label>
+                    
+                            <label class="custom-control custom-checkbox">
+                              <input type="checkbox" checked="" class="custom-control-input">
+                              <div class="custom-control-label text-warning"> 
+                                  <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+                              
+                              </div>
+                            </label>
+                    
+                        </div> {% endcomment %}
+                    </div>
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="row">
+
+               {% for tom in on_sale%}
+            <div class="col-md-3">
+                <figure class="card card-product-grid">
+                    <div class="img-wrap"> <img src="/media/{{tom.product_images.first.image}}"> </div>
+                    <figcaption class="info-wrap border-top">
+                        <a href="{% url 'get_product' tom.slug %}" class="title">
+                            <b>{{tom.product_name}}</b></a>
+                        <div class="price mt-2">${{tom.price}}.00</div> <!-- price-wrap.// -->
+                        <div class="price mt-2">${{tom.discount_price}}.00</div> <!-- price-wrap.// -->
+                    </figcaption>
+                </figure> <!-- card // -->
+            </div> <!-- col.// -->
+    
+            {% endfor %}
+
+          
+                </div> <!-- col.// -->
+                
+        
+    </div>
+
+
+
+
+                </div>
+        
+                </div>
+
+
+        </div>
+        
+
+
+{% endblock %}
